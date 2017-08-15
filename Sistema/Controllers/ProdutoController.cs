@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace Sistema.Controllers
 {
     public class ProdutoController : Controller
     {
+
+        private LojaContext db = new LojaContext();
+
         // GET: Produto
         public ActionResult Index()
         {
-            return View();
+            return View(db.Produto.ToList());
         }
 
         // GET: Produto/Details/5
