@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Produto", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Preco)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UltimaCompra)
+            @Html.DisplayName("Última Compra")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estoque)
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Estoque)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
