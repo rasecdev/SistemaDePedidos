@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema", "Sistema\Sistema.csproj", "{9D593985-BE4F-4731-8A50-C6B8530CB61B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDePedidos", "Sistema\SistemaDePedidos.csproj", "{9D593985-BE4F-4731-8A50-C6B8530CB61B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
