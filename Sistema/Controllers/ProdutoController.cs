@@ -1,4 +1,5 @@
 ﻿using Sistema.Context;
+using Sistema.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Sistema.Controllers
         // GET: Produto/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var produto = db.Produto.Find(id);
+            return View(produto);
         }
 
         // GET: Produto/Create
@@ -32,17 +34,22 @@ namespace Sistema.Controllers
 
         // POST: Produto/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Produto produto)
         {
             try
             {
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Produto.Add(produto);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(produto);
             }
             catch
             {
-                return View();
+                return View(produto);
             }
         }
 
