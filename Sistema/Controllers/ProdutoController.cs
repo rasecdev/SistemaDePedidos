@@ -1,11 +1,8 @@
 ﻿using Sistema.Context;
 using Sistema.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Sistema.Controllers
@@ -18,6 +15,7 @@ namespace Sistema.Controllers
         // GET: Produto
         public ActionResult Index()
         {
+
             return View(db.Produto.ToList());
         }
 
@@ -32,7 +30,7 @@ namespace Sistema.Controllers
 
             if (produto == null)
             {
-                return new HttpNotFoundResult();
+                return HttpNotFound();
             }
 
             return View(produto);
@@ -50,15 +48,16 @@ namespace Sistema.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     db.Produto.Add(produto);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
+
                 return View(produto);
             }
+
             catch
             {
                 return View(produto);
@@ -76,7 +75,7 @@ namespace Sistema.Controllers
 
             if (produto == null)
             {
-                return new HttpNotFoundResult();
+                return HttpNotFound();
             }
 
             return View(produto);
@@ -88,14 +87,16 @@ namespace Sistema.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+
                 if (ModelState.IsValid)
                 {
-                    //Modifica os dados do Produto.
                     db.Entry(produto).State = EntityState.Modified;
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
+
                 return View(produto);
+
             }
             catch
             {
@@ -104,24 +105,41 @@ namespace Sistema.Controllers
         }
 
         // GET: Produto/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var produto = db.Produto.Find(id);
+
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(produto);
         }
 
         // POST: Produto/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Produto produto)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (ModelState.IsValid)
+                {
+                    produto = db.Produto.Find(id);
+                    db.Produto.Remove(produto);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
+                return View(produto);
             }
             catch
             {
-                return View();
+                return View(produto);
             }
         }
     }

@@ -1,11 +1,12 @@
 ﻿@model Sistema.Models.Produto
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Detalhes do Produto - @Html.DisplayFor(model => model.Descricao)</h2>
+<h2>Delete</h2>
 
+<h3>Tem certeza que deseja Excluir?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -50,8 +51,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Cancelar", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Voltar    ", "Index")
-</p>
